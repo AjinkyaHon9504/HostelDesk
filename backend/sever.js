@@ -19,6 +19,7 @@ const { UserModel, ComplaintModel } = require("./db");
 // Shared constants (for API consistency)
 const HOSTELS = ["A-Block", "B-Block", "C-Block", "D-Block", "Girls Hostel"];
 const CATEGORIES = ["plumbing", "electrical", "cleanliness", "water", "maintenance", "other"];
+const COMPLAINT_STATUSES = ["submitted", "assigned", "open", "resolved"];
 
 mongoose
   .connect("mongodb://localhost:27017/new-db-for-project")
@@ -29,11 +30,12 @@ mongoose
 // Student signup - hostel required (complaints auto-linked to student's hostel)
 app.post("/signup/student", async function (req, res) {
   try {
-    const { username, password, hostel } = req.body;
+    const { username, password, hostel, room_no } = req.body;
     const requiredBody = z.object({
       username: z.string().min(3).max(100),
       password: z.string().min(3).max(12),
       hostel: z.string().min(1),
+      room_no: z.string().min(1),
     });
     const parsedData = requiredBody.safeParse(req.body);
     if (!parsedData.success) {
@@ -55,6 +57,7 @@ app.post("/signup/student", async function (req, res) {
       password: hashedPassword,
       role: "student",
       hostel,
+      room_no,
     });
     const token = jwt.sign({ username, role: "student" }, JWT_SECRET);
     return res.status(200).json({ token });
@@ -201,6 +204,7 @@ app.get("/me", async (req, res) => {
       username: user.username,
       role: user.role,
       hostel: user.hostel,
+      room_no: user.room_no,
     });
   } catch (err) {
     return res.status(401).json({ message: "Invalid token" });
@@ -226,6 +230,8 @@ app.post("/new-complaint", authStudent, async function (req, res) {
       urgent: !!urgent,
       hostel: user.hostel,
       room_no,
+      assignedStaff: null,
+      status: "submitted",
       done: false,
     });
     return res.status(201).json(complaint);
@@ -282,8 +288,43 @@ app.put("/markedDone/:id", authWarden, async (req, res) => {
     if (complaint.hostel !== req.wardenHostel) {
       return res.status(403).json({ message: "Not your hostel" });
     }
-    await ComplaintModel.findByIdAndUpdate(req.params.id, { done: true });
+    await ComplaintModel.findByIdAndUpdate(req.params.id, {
+      done: true,
+      status: "resolved",
+    });
     res.json({ message: "Marked as done" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put("/warden/complaints/:id/status", authWarden, async (req, res) => {
+  try {
+    const { status, assignedStaff } = req.body;
+    if (!COMPLAINT_STATUSES.includes(status)) {
+      return res.status(400).json({ message: "Invalid status" });
+    }
+
+    const complaint = await ComplaintModel.findById(req.params.id);
+    if (!complaint) {
+      return res.status(404).json({ message: "Complaint not found" });
+    }
+    if (complaint.hostel !== req.wardenHostel) {
+      return res.status(403).json({ message: "Not your hostel" });
+    }
+
+    const update = {
+      status,
+      done: status === "resolved",
+    };
+    if (typeof assignedStaff === "string") {
+      update.assignedStaff = assignedStaff.trim() || null;
+    }
+
+    const updated = await ComplaintModel.findByIdAndUpdate(req.params.id, update, {
+      new: true,
+    });
+    res.json(updated);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

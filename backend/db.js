@@ -21,6 +21,10 @@ const User = new mongoose.Schema({
     type: String,
     default: null,
   },
+  room_no: {
+    type: String,
+    default: null,
+  },
 });
 
 const Complaints = new Schema({
@@ -34,6 +38,15 @@ const Complaints = new Schema({
   urgent: Boolean,
   hostel: String,
   room_no: String,
+  assignedStaff: {
+    type: String,
+    default: null,
+  },
+  status: {
+    type: String,
+    enum: ["submitted", "assigned", "open", "resolved"],
+    default: "submitted",
+  },
   done: Boolean,
   createdAt: { type: Date, default: Date.now },
 });

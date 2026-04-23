@@ -74,6 +74,29 @@ function DashBoardAdmin() {
     }
   }
 
+  async function updateStatus(id, status, assignedStaff) {
+    try {
+      const res = await axios.put(
+        `${API}/warden/complaints/${id}/status`,
+        { status, assignedStaff },
+        { headers: { authorization: localStorage.getItem("token") } }
+      );
+      const updated = res.data;
+      setComplaints((prev) =>
+        prev.map((item) => (item._id === id ? { ...item, ...updated } : item))
+      );
+      setByCategory((prev) => {
+        const next = {};
+        Object.keys(prev).forEach((cat) => {
+          next[cat] = prev[cat].map((c) => (c._id === id ? { ...c, ...updated } : c));
+        });
+        return next;
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   function getCategoryLabel(val) {
     return CATEGORIES.find((c) => c.value === val)?.label || val;
   }
@@ -171,6 +194,20 @@ function DashBoardAdmin() {
                 </div>
                 <div className="item-actions">
                   {item.urgent && <span className="urgent-badge">Urgent</span>}
+                  <button
+                    className="status-action-btn"
+                    onClick={() =>
+                      updateStatus(item._id, "assigned", item.assignedStaff || "Hostel Staff")
+                    }
+                  >
+                    Assign
+                  </button>
+                  <button
+                    className="status-action-btn"
+                    onClick={() => updateStatus(item._id, "open", item.assignedStaff || "Hostel Staff")}
+                  >
+                    Open
+                  </button>
                   <label className="checkbox">
                     <input
                       type="checkbox"

@@ -9,7 +9,9 @@ function Landing() {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const [role, setRole] = useState("student");
+  const [authMode, setAuthMode] = useState("login");
   const [hostel, setHostel] = useState(HOSTELS[0]);
+  const [roomNo, setRoomNo] = useState("");
 
   useEffect(() => {
     setHostel(HOSTELS[0]);
@@ -26,9 +28,16 @@ function Landing() {
       alert("Please select your hostel");
       return;
     }
+    if (role === "student" && !roomNo.trim()) {
+      alert("Please enter room number");
+      return;
+    }
 
     const url = role === "warden" ? `${API}/signup/warden` : `${API}/signup/student`;
-    const body = { username, password, hostel };
+    const body =
+      role === "student"
+        ? { username, password, hostel, room_no: roomNo.trim() }
+        : { username, password, hostel };
 
     const response = await fetch(url, {
       method: "POST",
@@ -45,6 +54,7 @@ function Landing() {
       alert(data.message || "Sign up failed");
       usernameRef.current.value = "";
       passwordRef.current.value = "";
+      setRoomNo("");
     }
   }
 
@@ -76,71 +86,103 @@ function Landing() {
   }
 
   return (
-    <div className="landing-page">
-      <div className="container">
-        <div className="landing-header">
-          <h1>🏠 Hostel Complaint System</h1>
-          <p>Students lodge • Wardens manage</p>
+    <div className="landing-page ld-page">
+      <div className="ld-card">
+        <div className="ld-logo">🏠</div>
+        <h1 className="ld-title">HostelDesk</h1>
+        <p className="ld-subtitle">Sign in to your account</p>
+
+        <div className="ld-field">
+          <label>Email</label>
+          <input
+            ref={usernameRef}
+            id="username"
+            type="text"
+            placeholder="yourname@college.edu"
+          />
         </div>
 
-        <div className="navbar">
+        <div className="ld-field">
+          <label>Password</label>
+          <input
+            ref={passwordRef}
+            id="password"
+            type="password"
+            placeholder="••••••••"
+          />
+        </div>
+
+        {authMode === "signup" && (
+          <>
+            <div className="ld-field">
+              <label>Hostel</label>
+              <select value={hostel} onChange={(e) => setHostel(e.target.value)}>
+                {HOSTELS.map((h) => (
+                  <option key={h} value={h}>
+                    {h}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {role === "student" && (
+              <div className="ld-field">
+                <label>Room Number</label>
+                <input
+                  type="text"
+                  placeholder="e.g. 101"
+                  value={roomNo}
+                  onChange={(e) => setRoomNo(e.target.value)}
+                />
+              </div>
+            )}
+          </>
+        )}
+
+        <div className="ld-row">
+          <label className="ld-remember">
+            <input type="checkbox" />
+            Remember me
+          </label>
           <button
-            className={`tab ${role === "student" ? "active" : ""}`}
+            type="button"
+            className="ld-link"
+            onClick={() => alert("Password reset is not implemented yet")}
+          >
+            Forgot password?
+          </button>
+        </div>
+
+        <button
+          className="ld-submit"
+          onClick={authMode === "login" ? login : signUp}
+        >
+          {authMode === "login" ? "Sign in →" : "Create account →"}
+        </button>
+
+        <p className="ld-meta">
+          {authMode === "login" ? "Don't have an account? " : "Already have an account? "}
+          <button
+            type="button"
+            className="ld-link"
+            onClick={() => setAuthMode(authMode === "login" ? "signup" : "login")}
+          >
+            {authMode === "login" ? "Register" : "Sign in"}
+          </button>
+        </p>
+
+        <p className="ld-sep">— or sign in as —</p>
+        <div className="ld-role-wrap">
+          <button
+            className={`ld-role-btn ${role === "student" ? "active" : ""}`}
             onClick={() => setRole("student")}
           >
             Student
           </button>
           <button
-            className={`tab ${role === "warden" ? "active" : ""}`}
+            className={`ld-role-btn ${role === "warden" ? "active" : ""}`}
             onClick={() => setRole("warden")}
           >
-            Warden
-          </button>
-        </div>
-
-        <div className="form-section">
-          <div className="form-group">
-            <label>Select your hostel</label>
-            <select
-              value={hostel}
-              onChange={(e) => setHostel(e.target.value)}
-              className="input"
-            >
-              {HOSTELS.map((h) => (
-                <option key={h} value={h}>
-                  {h}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              ref={usernameRef}
-              id="username"
-              type="text"
-              placeholder="Enter username"
-              className="input"
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              ref={passwordRef}
-              id="password"
-              type="password"
-              placeholder="Enter password"
-              className="input"
-            />
-          </div>
-
-          <button className="btn primary" onClick={login}>
-            Login
-          </button>
-          <p className="form-hint">Don&apos;t have an account?</p>
-          <button className="btn secondary" onClick={signUp}>
-            Sign up
+            Admin
           </button>
         </div>
       </div>
