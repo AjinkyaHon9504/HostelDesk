@@ -32,7 +32,7 @@ const Complaints = new Schema({
   title: String,
   category: {
     type: String,
-    enum: ["plumbing", "electrical", "cleanliness", "water", "maintenance", "other"],
+    enum: ["plumbing", "electrical", "cleanliness", "internet", "maintenance", "other"],
     default: "other",
   },
   urgent: Boolean,

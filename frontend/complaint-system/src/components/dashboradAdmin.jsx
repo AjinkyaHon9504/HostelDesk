@@ -6,7 +6,7 @@ const API = "http://localhost:3000";
 const CATEGORIES = [
   { value: "electrical", label: "Elec", color: "#93c5fd" },
   { value: "plumbing", label: "Plumb", color: "#fcd34d" },
-  { value: "water", label: "Net", color: "#86efac" },
+  { value: "internet", label: "Net", color: "#86efac" },
   { value: "maintenance", label: "Mess", color: "#fca5a5" },
   { value: "cleanliness", label: "Clean", color: "#e5e7eb" },
   { value: "other", label: "Sec", color: "#fde68a" },
@@ -104,7 +104,7 @@ function DashBoardAdmin() {
   }
 
   function getCategoryClass(category) {
-    return ["plumbing", "electrical", "water", "maintenance", "cleanliness", "other"].includes(category)
+    return ["plumbing", "electrical", "internet", "maintenance", "cleanliness", "other"].includes(category)
       ? category
       : "other";
   }

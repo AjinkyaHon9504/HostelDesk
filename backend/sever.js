@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const z = require("zod");
 const cors = require("cors");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
+const genAI = new GoogleGenerativeAI("AIzaSyAX1J2rYbc1xI-pTxGxRfmy43doQ_HOm7g");
 const app = express();
 const JWT_SECRET = "terimaakichut";
 const JWT_SECRET_WARDEN = "nai batao gya";
@@ -18,7 +20,7 @@ const { UserModel, ComplaintModel } = require("./db");
 
 // Shared constants (for API consistency)
 const HOSTELS = ["A-Block", "B-Block", "C-Block", "D-Block", "Girls Hostel"];
-const CATEGORIES = ["plumbing", "electrical", "cleanliness", "water", "maintenance", "other"];
+const CATEGORIES = ["plumbing", "electrical", "cleanliness", "internet", "maintenance", "other"];
 const COMPLAINT_STATUSES = ["submitted", "assigned", "open", "resolved"];
 
 mongoose
@@ -214,7 +216,7 @@ app.get("/me", async (req, res) => {
 app.post("/new-complaint", authStudent, async function (req, res) {
   try {
     const user = await UserModel.findOne({ username: req.username });
-    const { title, room_no, urgent, category } = req.body;
+    const { title, urgent, category } = req.body;
 
     if (!category || !CATEGORIES.includes(category)) {
       return res.status(400).json({ message: "Invalid category" });
@@ -223,20 +225,60 @@ app.post("/new-complaint", authStudent, async function (req, res) {
       return res.status(400).json({ message: "Your hostel is not set. Please contact admin." });
     }
 
+    let assignedStaff = null;
+    if (category === "electrical") assignedStaff = "Electrical Dept";
+    else if (category === "plumbing") assignedStaff = "Plumbing Team";
+    else if (category === "internet") assignedStaff = "IT Support";
+    else if (category === "cleanliness") assignedStaff = "Housekeeping";
+    else if (category === "maintenance") assignedStaff = "Maintenance Team";
+
     const complaint = await ComplaintModel.create({
       userId: user._id,
       title,
       category,
       urgent: !!urgent,
       hostel: user.hostel,
-      room_no,
-      assignedStaff: null,
-      status: "submitted",
+      room_no: user.room_no,
+      assignedStaff,
+      status: "open",
       done: false,
     });
     return res.status(201).json(complaint);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+app.post("/ai/analyze-complaint", authStudent, async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    if (!title && !description) return res.json({ category: "other", priority: "low" });
+
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const prompt = `
+      Analyze this hostel complaint and return a JSON object with 'category' and 'priority'.
+      Title: ${title}
+      Description: ${description}
+
+      Categories: plumbing, electrical, cleanliness, internet, maintenance, other.
+      Priority: low, medium, high. (High if it's an emergency, flooding, sparks, safety hazard, etc.)
+      
+      Respond with ONLY the raw JSON object (no markdown, no backticks). Format:
+      {"category": "...", "priority": "..."}
+    `;
+
+    const result = await model.generateContent(prompt);
+    let text = result.response.text().trim();
+    if (text.startsWith("\`\`\`json")) text = text.slice(7, -3).trim();
+    if (text.startsWith("\`\`\`")) text = text.slice(3, -3).trim();
+
+    const parsed = JSON.parse(text);
+    if (!CATEGORIES.includes(parsed.category)) parsed.category = "other";
+    
+    res.json(parsed);
+  } catch (error) {
+    console.error("AI Error:", error);
+    res.json({ category: "other", priority: "low" });
   }
 });
 

@@ -6,7 +6,7 @@ const API = "http://localhost:3000";
 const CATEGORIES = [
   { value: "electrical", label: "Electrical", icon: "⚡" },
   { value: "plumbing", label: "Plumbing", icon: "🔧" },
-  { value: "water", label: "Internet", icon: "🌐" },
+  { value: "internet", label: "Internet", icon: "🌐" },
   { value: "maintenance", label: "Mess / Food", icon: "🍽️" },
   { value: "cleanliness", label: "Cleanliness", icon: "🧹" },
   { value: "other", label: "Security", icon: "🔒" },
@@ -21,11 +21,12 @@ function DashBoard() {
   const [expandedComplaintId, setExpandedComplaintId] = useState("");
 
   const [title, setTitle] = useState("");
-  const [roomNo, setRoomNo] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("low");
   const [category, setCategory] = useState("plumbing");
   const [urgent, setUrgent] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [duplicateWarning, setDuplicateWarning] = useState("");
 
   const navigate = useNavigate();
 
@@ -63,6 +64,51 @@ function DashBoard() {
     fetchData();
   }, [navigate]);
 
+  useEffect(() => {
+    if (!title && !description) {
+      setDuplicateWarning("");
+      return;
+    }
+    
+    // Smart Deduplication check
+    const isDuplicate = complaints.some(
+      (c) => c.category === category && c.status !== "resolved" && !c.done
+    );
+    if (isDuplicate) {
+      setDuplicateWarning(`Note: You already have an active complaint for ${getCategoryLabel(category)}.`);
+    } else {
+      setDuplicateWarning("");
+    }
+
+    // AI Analysis
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const timer = setTimeout(async () => {
+      setIsAnalyzing(true);
+      try {
+        const res = await axios.post(
+          `${API}/ai/analyze-complaint`,
+          { title, description },
+          { headers: { authorization: token } }
+        );
+        if (res.data.category && CATEGORIES.some(c => c.value === res.data.category)) {
+          setCategory(res.data.category);
+        }
+        if (res.data.priority) {
+          setPriority(res.data.priority);
+          setUrgent(res.data.priority === "high");
+        }
+      } catch (err) {
+        console.error("AI Analysis failed", err);
+      } finally {
+        setIsAnalyzing(false);
+      }
+    }, 1000); // 1s debounce
+
+    return () => clearTimeout(timer);
+  }, [title, description, complaints, category]);
+
   async function submitComplaint(e) {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -71,7 +117,6 @@ function DashBoard() {
         `${API}/new-complaint`,
         {
           title: description ? `${title} - ${description}` : title,
-          room_no: roomNo,
           category,
           urgent: priority === "high" || urgent,
         },
@@ -79,7 +124,6 @@ function DashBoard() {
       );
       setComplaints([res.data, ...complaints]);
       setTitle("");
-      setRoomNo("");
       setDescription("");
       setPriority("low");
       setCategory("plumbing");
@@ -138,6 +182,13 @@ function DashBoard() {
     return "In progress";
   }
 
+  function getEstimatedResolution(item) {
+    if (item.urgent) return "Within 24 Hours";
+    if (item.category === "electrical" || item.category === "plumbing") return "1-2 Days";
+    if (item.category === "internet") return "2-3 Days";
+    return "2-4 Days";
+  }
+
   return (
     <div className="dashboard student-v2">
       <div className="student-shell">
@@ -168,8 +219,6 @@ function DashBoard() {
             >
               My complaints
             </button>
-            <button className="student-menu-item">Notifications</button>
-            <button className="student-menu-item">Settings</button>
             <button className="student-menu-item danger" onClick={logout}>
               Logout
             </button>
@@ -182,11 +231,17 @@ function DashBoard() {
               <div className="student-header">
                 <h1>Submit a complaint</h1>
                 <p>Select a category and describe the issue</p>
+                {isAnalyzing && <span style={{fontSize: '13px', color: '#8b5cf6'}}>✨ AI is analyzing your complaint...</span>}
               </div>
               {!studentHostel && (
                 <p className="form-hint" style={{ color: "#fca5a5" }}>
                   Your hostel is not set. Please contact admin.
                 </p>
+              )}
+              {duplicateWarning && (
+                <div style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid #f59e0b', color: '#fcd34d', padding: '10px 14px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px' }}>
+                  ⚠️ {duplicateWarning}
+                </div>
               )}
               <form onSubmit={submitComplaint}>
                 <div className="form-group">
@@ -216,17 +271,7 @@ function DashBoard() {
                   />
                 </div>
                 <div className="student-form-row">
-                  <div className="form-group">
-                    <label>Room number</label>
-                    <input
-                      type="text"
-                      placeholder="214"
-                      value={roomNo}
-                      onChange={(e) => setRoomNo(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
+                  <div className="form-group" style={{ gridColumn: "span 2" }}>
                     <label>Priority</label>
                     <select
                       value={priority}
@@ -375,17 +420,20 @@ function DashBoard() {
                                   <small>Resolved</small>
                                 </div>
                               </div>
-                              <div className="status-panel compact">
-                                <div>
-                                  <h3>Current status</h3>
-                                  <p>
-                                    Assigned to <strong>{item.assignedStaff || "Not assigned yet"}</strong>
-                                  </p>
-                                  <p>
-                                    Submitted: <strong>{new Date(item.createdAt).toLocaleString()}</strong>
-                                  </p>
+                                <div className="status-panel compact">
+                                  <div>
+                                    <h3>Current status</h3>
+                                    <p>
+                                      Assigned to <strong>{item.assignedStaff || "Not assigned yet"}</strong>
+                                    </p>
+                                    <p>
+                                      Submitted: <strong>{new Date(item.createdAt).toLocaleString()}</strong>
+                                    </p>
+                                    <p style={{ marginTop: "6px", color: "#8b5cf6" }}>
+                                      Estimated Resolution: <strong>{getEstimatedResolution(item)}</strong>
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
                             </div>
                           )}
                         </div>
