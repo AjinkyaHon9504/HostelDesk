@@ -7,7 +7,7 @@
         <methods>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="testFullWorkflow"/>
+          <include name="testCompleteWorkflow"/>
         </methods>
       </class> <!-- experiment4.HostelDeskConciseE2ETest -->
     </classes>

@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-27T15:05:10 IST" name="Default suite" finished-at="2026-04-27T15:05:37 IST" duration-ms="26621">
+  <suite started-at="2026-04-27T15:07:34 IST" name="Default suite" finished-at="2026-04-27T15:08:00 IST" duration-ms="26658">
     <groups>
     </groups>
-    <test started-at="2026-04-27T15:05:10 IST" name="Default test" finished-at="2026-04-27T15:05:37 IST" duration-ms="26621">
+    <test started-at="2026-04-27T15:07:34 IST" name="Default test" finished-at="2026-04-27T15:08:00 IST" duration-ms="26658">
       <class name="experiment4.HostelDeskConciseE2ETest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@175c2241]" started-at="2026-04-27T15:05:10 IST" name="setup" finished-at="2026-04-27T15:05:13 IST" duration-ms="2984" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@13c9d689]" started-at="2026-04-27T15:07:34 IST" name="setup" finished-at="2026-04-27T15:07:36 IST" duration-ms="2752" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="testFullWorkflow()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@175c2241]" started-at="2026-04-27T15:05:13 IST" name="testFullWorkflow" finished-at="2026-04-27T15:05:36 IST" duration-ms="23144" status="FAIL">
+        <test-method signature="testCompleteWorkflow()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@13c9d689]" started-at="2026-04-27T15:07:37 IST" name="testCompleteWorkflow" finished-at="2026-04-27T15:08:00 IST" duration-ms="23467" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
               <![CDATA[Expected condition failed: waiting for presence of element located by: By.id: username (tried for 20 second(s) with 500 milliseconds interval)]]>
@@ -20,8 +20,8 @@
               <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.id: username (tried for 20 second(s) with 500 milliseconds interval)
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at experiment4.HostelDeskConciseE2ETest.authenticate(HostelDeskConciseE2ETest.java:107)
-at experiment4.HostelDeskConciseE2ETest.testFullWorkflow(HostelDeskConciseE2ETest.java:48)
+at experiment4.HostelDeskConciseE2ETest.authenticate(HostelDeskConciseE2ETest.java:105)
+at experiment4.HostelDeskConciseE2ETest.testCompleteWorkflow(HostelDeskConciseE2ETest.java:50)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -54,9 +54,9 @@ For documentation on this error, please visit: https://www.selenium.dev/document
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [c033d212900ada6185bb8cb993cad79d, findElement {value=username, using=id}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61281}, goog:processID: 8328, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61281/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c033d212900ada6185bb8cb993cad79d
+Command: [82b78f2f8eba38e916baa0a2e11964bd, findElement {using=id, value=username}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56008}, goog:processID: 17988, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56008/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 82b78f2f8eba38e916baa0a2e11964bd
 at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
@@ -80,8 +80,8 @@ at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
           </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testFullWorkflow -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@175c2241]" started-at="2026-04-27T15:05:36 IST" name="tearDown" finished-at="2026-04-27T15:05:37 IST" duration-ms="419" status="PASS">
+        </test-method> <!-- testCompleteWorkflow -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@13c9d689]" started-at="2026-04-27T15:08:00 IST" name="tearDown" finished-at="2026-04-27T15:08:00 IST" duration-ms="365" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
