@@ -2,36 +2,36 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-27T14:50:48 IST" name="Default suite" finished-at="2026-04-27T14:51:11 IST" duration-ms="22531">
+  <suite started-at="2026-04-27T14:57:51 IST" name="Default suite" finished-at="2026-04-27T14:58:14 IST" duration-ms="22122">
     <groups>
     </groups>
-    <test started-at="2026-04-27T14:50:48 IST" name="Default test" finished-at="2026-04-27T14:51:11 IST" duration-ms="22531">
+    <test started-at="2026-04-27T14:57:51 IST" name="Default test" finished-at="2026-04-27T14:58:14 IST" duration-ms="22122">
       <class name="experiment4.HostelDeskConciseE2ETest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@6771beb3]" started-at="2026-04-27T14:50:48 IST" name="setup" finished-at="2026-04-27T14:50:51 IST" duration-ms="2765" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@411f53a0]" started-at="2026-04-27T14:57:51 IST" name="setup" finished-at="2026-04-27T14:57:55 IST" duration-ms="3767" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="testFullWorkflow()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@6771beb3]" started-at="2026-04-27T14:50:51 IST" name="testFullWorkflow" finished-at="2026-04-27T14:51:10 IST" duration-ms="19343" status="FAIL">
+        <test-method signature="testFullWorkflow()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@411f53a0]" started-at="2026-04-27T14:57:55 IST" name="testFullWorkflow" finished-at="2026-04-27T14:58:13 IST" duration-ms="17888" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
               <![CDATA[Expected condition failed: waiting for url to contain "dashboard". Current url: "http://localhost:5173/" (tried for 15 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65044}, goog:processID: 22284, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65044/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a863a7533cbf24c4f9205c853f2687a6]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50080}, goog:processID: 35640, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50080/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: fe6ff899bc1cacde50ead1bcae27f9c9]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for url to contain "dashboard". Current url: "http://localhost:5173/" (tried for 15 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65044}, goog:processID: 22284, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65044/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a863a7533cbf24c4f9205c853f2687a6
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50080}, goog:processID: 35640, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50080/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: fe6ff899bc1cacde50ead1bcae27f9c9
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at experiment4.HostelDeskConciseE2ETest.authenticate(HostelDeskConciseE2ETest.java:102)
-at experiment4.HostelDeskConciseE2ETest.testFullWorkflow(HostelDeskConciseE2ETest.java:44)
+at experiment4.HostelDeskConciseE2ETest.authenticate(HostelDeskConciseE2ETest.java:134)
+at experiment4.HostelDeskConciseE2ETest.testFullWorkflow(HostelDeskConciseE2ETest.java:45)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -64,7 +64,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFullWorkflow -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@6771beb3]" started-at="2026-04-27T14:51:10 IST" name="tearDown" finished-at="2026-04-27T14:51:11 IST" duration-ms="355" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.HostelDeskConciseE2ETest@411f53a0]" started-at="2026-04-27T14:58:13 IST" name="tearDown" finished-at="2026-04-27T14:58:14 IST" duration-ms="386" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

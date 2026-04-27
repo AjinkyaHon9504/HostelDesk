@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.UUID;
 
 /**
- * Concise Full E2E Workflow:
+ * Robust Concise Full E2E Workflow:
  * 1. Student Signup & Login
  * 2. Student Raises Complaint
  * 3. Student Logouts
@@ -26,9 +26,11 @@ public class HostelDeskConciseE2ETest {
     public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
+        // Disable search engine choice screen
+        options.addArguments("--disable-search-engine-choice-screen");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     @AfterClass
@@ -81,7 +83,7 @@ public class HostelDeskConciseE2ETest {
             WebElement statusDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='admin-status-form']//select")));
             new Select(statusDropdown).selectByVisibleText("resolved");
             
-            type(By.xpath("//textarea"), "Fixed via concise E2E test auto-verification.");
+            type(By.xpath("//textarea"), "Fixed via auto-test.");
             click(By.xpath("//button[text()='Update status']"));
             
             System.out.println("Verifying resolution...");
@@ -92,8 +94,7 @@ public class HostelDeskConciseE2ETest {
             System.out.println("✅ Full workflow completed successfully!");
 
         } catch (Exception e) {
-            takeScreenshot("FAILURE_" + e.getClass().getSimpleName());
-            System.err.println("TEST FAILED: " + e.getMessage());
+            handleFailure(e);
             throw e;
         }
     }
@@ -114,7 +115,6 @@ public class HostelDeskConciseE2ETest {
         
         if (!submitBtn.getText().contains(targetButtonText)) {
             click(By.xpath("//button[contains(@class,'ld-link') and text()='" + mode + "']"));
-            // Wait for button text to change
             wait.until(ExpectedConditions.textToBePresentInElement(submitBtn, targetButtonText));
         }
         
@@ -130,9 +130,25 @@ public class HostelDeskConciseE2ETest {
             type(By.xpath("//label[text()='Room Number']/following-sibling::input"), room);
         }
         
+        // Click and handle potential alerts
         click(By.className("ld-submit"));
-        wait.until(ExpectedConditions.urlContains("dashboard"));
-        System.out.println("Successfully landed on dashboard.");
+        
+        try {
+            // Wait for dashboard or handle alert
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlContains("dashboard"));
+            System.out.println("Successfully landed on dashboard.");
+        } catch (TimeoutException e) {
+            // Check for alert
+            try {
+                Alert alert = driver.switchTo().alert();
+                String msg = alert.getText();
+                alert.accept();
+                throw new RuntimeException("Auth failed with alert: " + msg);
+            } catch (NoAlertPresentException noAlert) {
+                throw e;
+            }
+        }
     }
 
     private void click(By locator) {
@@ -168,5 +184,15 @@ public class HostelDeskConciseE2ETest {
         } catch (Exception e) {
             System.err.println("Screenshot failed: " + e.getMessage());
         }
+    }
+
+    private void handleFailure(Exception e) {
+        takeScreenshot("FAILURE_" + e.getClass().getSimpleName());
+        System.err.println("TEST FAILED: " + e.getMessage());
+        System.err.println("Current URL: " + driver.getCurrentUrl());
+        try {
+            System.err.println("Alert text (if any): " + driver.switchTo().alert().getText());
+            driver.switchTo().alert().accept();
+        } catch (Exception ignored) {}
     }
 }
