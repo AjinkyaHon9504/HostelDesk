@@ -66,22 +66,24 @@ public class ComplaintSystemAllTests {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Student");
+        clickByText("Register");
         pause();
         WebElement hostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelSelect).selectByVisibleText("A-Block");
+        driver.findElement(By.xpath("//label[text()='Room Number']/following-sibling::input")).sendKeys("101");
         String username = "student_" + shortId();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("pass123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForStudentDashboard();
         pause();
         takeScreenshot("RegistrationSuccess");
+        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
         Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Registration success: should land on home with welcome message");
     }
@@ -92,18 +94,19 @@ public class ComplaintSystemAllTests {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Student");
+        clickByText("Register");
         pause();
         WebElement hostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelSelect).selectByVisibleText("B-Block");
+        driver.findElement(By.xpath("//label[text()='Room Number']/following-sibling::input")).sendKeys("202");
         String username = "loginuser_" + shortId();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("pass123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForStudentDashboard();
         pause();
@@ -111,17 +114,17 @@ public class ComplaintSystemAllTests {
         wait.until(ExpectedConditions.urlToBe(BASE_URL + "/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Student");
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("pass123");
         pause();
-        clickByText("Login");
+        clickByText("Sign in →");
         pause();
         waitForStudentDashboard();
         pause();
         takeScreenshot("LoginSuccess");
+        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
         Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Login success: should land on home with welcome message");
     }
@@ -132,22 +135,24 @@ public class ComplaintSystemAllTests {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Student");
+        clickByText("Register");
         pause();
         WebElement hostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelSelect).selectByVisibleText("C-Block");
+        driver.findElement(By.xpath("//label[text()='Room Number']/following-sibling::input")).sendKeys("303");
         String username = "homeuser_" + shortId();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("pass123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForStudentDashboard();
         pause();
         takeScreenshot("HomePage");
+        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
         Assert.assertTrue(welcome.isDisplayed(), "Home page: Welcome heading should be visible");
         WebElement quickActions = driver.findElement(By.xpath("//h2[text()='Quick Actions']"));
         Assert.assertTrue(quickActions.isDisplayed(), "Home page: Quick Actions section should be visible");
@@ -163,18 +168,19 @@ public class ComplaintSystemAllTests {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Student");
+        clickByText("Register");
         pause();
         WebElement hostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelSelect).selectByVisibleText("C-Block");
+        driver.findElement(By.xpath("//label[text()='Room Number']/following-sibling::input")).sendKeys("404");
         String username = "complaintuser_" + shortId();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("pass123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForStudentDashboard();
         pause();
@@ -213,18 +219,19 @@ public class ComplaintSystemAllTests {
         pause();
 
         // Student signup (A-Block to match warden)
-        clickByText("Student");
+        clickByText("Register");
         pause();
         WebElement studentHostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(studentHostelSelect).selectByVisibleText("A-Block");
+        driver.findElement(By.xpath("//label[text()='Room Number']/following-sibling::input")).sendKeys("101");
         String studentUser = "student_" + shortId();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(studentUser);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("pass123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForStudentDashboard();
         pause();
@@ -259,10 +266,12 @@ public class ComplaintSystemAllTests {
         pause();
 
         // Warden signup (with hostel)
-        clickByText("Warden");
+        clickByText("Admin");
+        pause();
+        clickByText("Register");
         pause();
         WebElement hostelDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelDropdown).selectByVisibleText("A-Block");
         pause();
         String wardenUser = "warden_" + shortId();
@@ -271,10 +280,11 @@ public class ComplaintSystemAllTests {
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("warden123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         wait.until(ExpectedConditions.urlContains("/dashboard/warden"));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1.welcome")));
+        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
+        Assert.assertTrue(welcome.isDisplayed());
         pause();
 
         // Warden: category tabs and complaint visible

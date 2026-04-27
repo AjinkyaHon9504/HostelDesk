@@ -101,10 +101,12 @@ public class ComplaintSystemWardenTests {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Warden");
+        clickByText("Admin");
+        pause();
+        clickByText("Register");
         pause();
         WebElement hostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelSelect).selectByVisibleText("A-Block");
         pause();
         String username = "warden_" + shortId();
@@ -113,11 +115,12 @@ public class ComplaintSystemWardenTests {
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("warden123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForWardenDashboard();
         pause();
         takeScreenshot("WardenRegistrationSuccess");
+        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
         Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Warden registration: should land on warden dashboard");
         WebElement subtitle = driver.findElement(By.cssSelector("p.dashboard-sub"));
@@ -131,10 +134,12 @@ public class ComplaintSystemWardenTests {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Warden");
+        clickByText("Admin");
+        pause();
+        clickByText("Register");
         pause();
         WebElement hostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelSelect).selectByVisibleText("B-Block");
         pause();
         String username = "wardenlogin_" + shortId();
@@ -142,7 +147,7 @@ public class ComplaintSystemWardenTests {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("warden123");
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForWardenDashboard();
         pause();
@@ -150,18 +155,19 @@ public class ComplaintSystemWardenTests {
         wait.until(ExpectedConditions.urlToBe(BASE_URL + "/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Warden");
-        new Select(driver.findElement(By.xpath("//label[text()='Select your hostel']/following-sibling::select"))).selectByVisibleText("B-Block");
+        clickByText("Admin");
+        new Select(driver.findElement(By.xpath("//label[text()='Hostel']/following-sibling::select"))).selectByVisibleText("B-Block");
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("warden123");
         pause();
-        clickByText("Login");
+        clickByText("Sign in →");
         pause();
         waitForWardenDashboard();
         pause();
         takeScreenshot("WardenLoginSuccess");
+        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
         Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Warden login: should land on warden dashboard");
     }
@@ -172,10 +178,12 @@ public class ComplaintSystemWardenTests {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
-        clickByText("Warden");
+        clickByText("Admin");
+        pause();
+        clickByText("Register");
         pause();
         WebElement hostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(hostelSelect).selectByVisibleText("C-Block");
         String username = "wardenhome_" + shortId();
         driver.findElement(By.id("username")).clear();
@@ -183,11 +191,12 @@ public class ComplaintSystemWardenTests {
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("warden123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForWardenDashboard();
         pause();
         takeScreenshot("WardenDashboard");
+        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
         Assert.assertTrue(welcome.isDisplayed(), "Warden home: Welcome visible");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".warden-stats")));
         WebElement totalLabel = driver.findElement(By.xpath("//div[contains(@class,'stat-card')]//span[text()='Total']"));
@@ -208,18 +217,19 @@ public class ComplaintSystemWardenTests {
         pause();
 
         // Step 1: Create a student (A-Block) and add a complaint (hostel auto from signup)
-        clickByText("Student");
+        clickByText("Register");
         pause();
         WebElement studentHostelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(studentHostelSelect).selectByVisibleText("A-Block");
+        driver.findElement(By.xpath("//label[text()='Room Number']/following-sibling::input")).sendKeys("101");
         String studentUser = "wardentest_st_" + shortId();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys(studentUser);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("pass123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         wait.until(ExpectedConditions.urlContains("/dashboard/student"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(., 'New Complaint')]")));
@@ -247,10 +257,12 @@ public class ComplaintSystemWardenTests {
         pause();
 
         // Step 2: Warden for A-Block signs up and views complaints
-        clickByText("Warden");
+        clickByText("Admin");
+        pause();
+        clickByText("Register");
         pause();
         WebElement wardenHostel = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//label[text()='Select your hostel']/following-sibling::select")));
+            By.xpath("//label[text()='Hostel']/following-sibling::select")));
         new Select(wardenHostel).selectByVisibleText("A-Block");
         pause();
         String wardenUser = "wardenview_" + shortId();
@@ -259,7 +271,7 @@ public class ComplaintSystemWardenTests {
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys("warden123");
         pause();
-        clickByText("Sign up");
+        clickByText("Create account →");
         pause();
         waitForWardenDashboard();
         pause();

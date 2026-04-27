@@ -10,8 +10,8 @@
           <include name="testRegistrationPage"/>
           <include name="setUp"/>
           <include name="testLoginPage"/>
-          <include name="testHomePage"/>
           <include name="testCoreFunctionalityAddComplaint"/>
+          <include name="testHomePage"/>
         </methods>
       </class> <!-- experiment4.ComplaintSystemAllTests -->
     </classes>
