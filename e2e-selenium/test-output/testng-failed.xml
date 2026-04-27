@@ -3,13 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="experiment4.HostelDeskConciseE2ETest">
+      <class name="experiment4.ComplaintSystemAllTests">
         <methods>
-          <include name="setup"/>
+          <include name="testFullE2EStudentAndWarden"/>
           <include name="tearDown"/>
-          <include name="testCompleteWorkflow"/>
+          <include name="testRegistrationPage"/>
+          <include name="setUp"/>
+          <include name="testLoginPage"/>
+          <include name="testCoreFunctionalityAddComplaint"/>
+          <include name="testHomePage"/>
         </methods>
-      </class> <!-- experiment4.HostelDeskConciseE2ETest -->
+      </class> <!-- experiment4.ComplaintSystemAllTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
