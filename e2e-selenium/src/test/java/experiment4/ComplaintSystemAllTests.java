@@ -1,14 +1,15 @@
 package experiment4;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.time.Duration;
-import java.util.UUID;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -31,8 +32,8 @@ public class ComplaintSystemAllTests {
     private WebDriverWait wait;
     private JavascriptExecutor js;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeMethod
+    public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
@@ -42,8 +43,8 @@ public class ComplaintSystemAllTests {
         js = (JavascriptExecutor) driver;
     }
 
-    @AfterEach
-    void tearDown() {
+    @AfterMethod
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
@@ -58,9 +59,8 @@ public class ComplaintSystemAllTests {
     }
 
     // ==================== MODULE 1: REGISTRATION PAGE ====================
-    @Test
-    @DisplayName("Module 1 - Registration Page")
-    void testRegistrationPage() {
+    @Test(description = "Module 1 - Registration Page")
+    public void testRegistrationPage() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -79,15 +79,14 @@ public class ComplaintSystemAllTests {
         pause();
         waitForStudentDashboard();
         pause();
-        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
-        assertTrue(welcome.getText().toLowerCase().contains("welcome"),
+        takeScreenshot("RegistrationSuccess");
+        Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Registration success: should land on home with welcome message");
     }
 
     // ==================== MODULE 2: LOGIN PAGE ====================
-    @Test
-    @DisplayName("Module 2 - Login Page")
-    void testLoginPage() {
+    @Test(description = "Module 2 - Login Page")
+    public void testLoginPage() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -120,15 +119,14 @@ public class ComplaintSystemAllTests {
         pause();
         waitForStudentDashboard();
         pause();
-        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
-        assertTrue(welcome.getText().toLowerCase().contains("welcome"),
+        takeScreenshot("LoginSuccess");
+        Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Login success: should land on home with welcome message");
     }
 
     // ==================== MODULE 3: HOME PAGE ====================
-    @Test
-    @DisplayName("Module 3 - Home Page")
-    void testHomePage() {
+    @Test(description = "Module 3 - Home Page")
+    public void testHomePage() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -147,20 +145,19 @@ public class ComplaintSystemAllTests {
         pause();
         waitForStudentDashboard();
         pause();
-        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
-        assertTrue(welcome.isDisplayed(), "Home page: Welcome heading should be visible");
+        takeScreenshot("HomePage");
+        Assert.assertTrue(welcome.isDisplayed(), "Home page: Welcome heading should be visible");
         WebElement quickActions = driver.findElement(By.xpath("//h2[text()='Quick Actions']"));
-        assertTrue(quickActions.isDisplayed(), "Home page: Quick Actions section should be visible");
+        Assert.assertTrue(quickActions.isDisplayed(), "Home page: Quick Actions section should be visible");
         WebElement myComplaints = driver.findElement(By.xpath("//h2[text()='My Complaints']"));
-        assertTrue(myComplaints.isDisplayed(), "Home page: My Complaints section should be visible");
+        Assert.assertTrue(myComplaints.isDisplayed(), "Home page: My Complaints section should be visible");
         WebElement newComplaintBtn = driver.findElement(By.xpath("//button[contains(., 'New Complaint')]"));
-        assertTrue(newComplaintBtn.isDisplayed(), "Home page: New Complaint button should be visible");
+        Assert.assertTrue(newComplaintBtn.isDisplayed(), "Home page: New Complaint button should be visible");
     }
 
     // ==================== MODULE 4: CORE FUNCTIONALITY (ADD COMPLAINT) ====================
-    @Test
-    @DisplayName("Module 4 - Core Functionality (Add Complaint)")
-    void testCoreFunctionalityAddComplaint() {
+    @Test(description = "Module 4 - Core Functionality (Add Complaint)")
+    public void testCoreFunctionalityAddComplaint() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -201,14 +198,14 @@ public class ComplaintSystemAllTests {
         WebElement complaintCard = wait.until(ExpectedConditions.visibilityOfElementLocated(
             By.xpath("//div[contains(@class,'complaint-item')]//h4[text()='" + complaintTitle + "']")));
         pause();
-        assertTrue(complaintCard.isDisplayed(),
+        takeScreenshot("AddedComplaint");
+        Assert.assertTrue(complaintCard.isDisplayed(),
             "Core functionality: Added complaint should appear in My Complaints list");
     }
 
     // ==================== FULL E2E: STUDENT + WARDEN ====================
-    @Test
-    @DisplayName("Full E2E - Student add complaint, Warden view and mark done")
-    void testFullE2EStudentAndWarden() {
+    @Test(description = "Full E2E - Student add complaint, Warden view and mark done")
+    public void testFullE2EStudentAndWarden() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -302,7 +299,8 @@ public class ComplaintSystemAllTests {
         if (!markDoneCheckbox.isSelected()) js.executeScript("arguments[0].click();", markDoneCheckbox);
         pause();
 
-        assertTrue(true, "Full E2E completed: Student added complaint, Warden marked it done.");
+        takeScreenshot("FullE2E_Resolved");
+        Assert.assertTrue(true, "Full E2E completed: Student added complaint, Warden marked it done.");
     }
 
     // ==================== MAIN: RUN ALL IN ONE BROWSER (for demo) ====================
@@ -429,6 +427,19 @@ public class ComplaintSystemAllTests {
     private static void waitForComplaintForm(WebDriver d, WebDriverWait w) {
         w.until(ExpectedConditions.visibilityOfElementLocated(
             By.xpath("//input[@placeholder='e.g. Water leakage in bathroom']")));
+    }
+
+    private void takeScreenshot(String name) {
+        try {
+            File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            File destFile = new File("screenshots/" + name + "_" + timestamp + ".png");
+            destFile.getParentFile().mkdirs();
+            Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Screenshot saved: " + destFile.getAbsolutePath());
+        } catch (Exception e) {
+            System.err.println("Failed to take screenshot: " + e.getMessage());
+        }
     }
 
     private static String shortId() {

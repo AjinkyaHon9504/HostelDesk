@@ -1,14 +1,15 @@
 package experiment4;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.time.Duration;
-import java.util.UUID;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -40,8 +41,8 @@ public class ComplaintSystemWardenTests {
     private WebDriverWait wait;
     private JavascriptExecutor js;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeMethod
+    public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
@@ -51,8 +52,8 @@ public class ComplaintSystemWardenTests {
         js = (JavascriptExecutor) driver;
     }
 
-    @AfterEach
-    void tearDown() {
+    @AfterMethod
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
@@ -93,9 +94,8 @@ public class ComplaintSystemWardenTests {
     }
 
     // ==================== MODULE 1: WARDEN REGISTRATION ====================
-    @Test
-    @DisplayName("Warden Module 1 - Registration (with hostel)")
-    void testWardenRegistration() {
+    @Test(description = "Warden Module 1 - Registration (with hostel)")
+    public void testWardenRegistration() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -115,18 +115,17 @@ public class ComplaintSystemWardenTests {
         pause();
         waitForWardenDashboard();
         pause();
-        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
-        assertTrue(welcome.getText().toLowerCase().contains("welcome"),
+        takeScreenshot("WardenRegistrationSuccess");
+        Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Warden registration: should land on warden dashboard");
         WebElement subtitle = driver.findElement(By.cssSelector("p.dashboard-sub"));
-        assertTrue(subtitle.getText().contains("A-Block"),
+        Assert.assertTrue(subtitle.getText().contains("A-Block"),
             "Warden dashboard should show assigned hostel A-Block");
     }
 
     // ==================== MODULE 2: WARDEN LOGIN ====================
-    @Test
-    @DisplayName("Warden Module 2 - Login")
-    void testWardenLogin() {
+    @Test(description = "Warden Module 2 - Login")
+    public void testWardenLogin() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -160,15 +159,14 @@ public class ComplaintSystemWardenTests {
         pause();
         waitForWardenDashboard();
         pause();
-        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
-        assertTrue(welcome.getText().toLowerCase().contains("welcome"),
+        takeScreenshot("WardenLoginSuccess");
+        Assert.assertTrue(welcome.getText().toLowerCase().contains("welcome"),
             "Warden login: should land on warden dashboard");
     }
 
     // ==================== MODULE 3: WARDEN HOME PAGE ====================
-    @Test
-    @DisplayName("Warden Module 3 - Home Page (dashboard)")
-    void testWardenHomePage() {
+    @Test(description = "Warden Module 3 - Home Page (dashboard)")
+    public void testWardenHomePage() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -187,23 +185,22 @@ public class ComplaintSystemWardenTests {
         pause();
         waitForWardenDashboard();
         pause();
-        WebElement welcome = driver.findElement(By.cssSelector("h1.welcome"));
-        assertTrue(welcome.isDisplayed(), "Warden home: Welcome visible");
+        takeScreenshot("WardenDashboard");
+        Assert.assertTrue(welcome.isDisplayed(), "Warden home: Welcome visible");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".warden-stats")));
         WebElement totalLabel = driver.findElement(By.xpath("//div[contains(@class,'stat-card')]//span[text()='Total']"));
-        assertTrue(totalLabel.isDisplayed(), "Warden home: Total stat visible");
+        Assert.assertTrue(totalLabel.isDisplayed(), "Warden home: Total stat visible");
         WebElement urgentLabel = driver.findElement(By.xpath("//div[contains(@class,'stat-card')]//span[text()='Urgent']"));
-        assertTrue(urgentLabel.isDisplayed(), "Warden home: Urgent stat visible");
+        Assert.assertTrue(urgentLabel.isDisplayed(), "Warden home: Urgent stat visible");
         WebElement complaintsByCat = driver.findElement(By.xpath("//h2[text()='Complaints by Category']"));
-        assertTrue(complaintsByCat.isDisplayed(), "Warden home: Complaints by Category visible");
+        Assert.assertTrue(complaintsByCat.isDisplayed(), "Warden home: Complaints by Category visible");
         WebElement allTab = driver.findElement(By.xpath("//button[contains(@class,'cat-tab') and contains(.,'All')]"));
-        assertTrue(allTab.isDisplayed(), "Warden home: Category tabs visible");
+        Assert.assertTrue(allTab.isDisplayed(), "Warden home: Category tabs visible");
     }
 
     // ==================== MODULE 4: WARDEN CORE - VIEW BY CATEGORY & MARK DONE ====================
-    @Test
-    @DisplayName("Warden Module 4 - View complaints by category and Mark as done")
-    void testWardenViewAndMarkDone() {
+    @Test(description = "Warden Module 4 - View complaints by category and Mark as done")
+    public void testWardenViewAndMarkDone() {
         driver.get(BASE_URL + "/");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
         pause();
@@ -286,7 +283,8 @@ public class ComplaintSystemWardenTests {
             js.executeScript("arguments[0].click();", markDoneCheckbox);
         }
         pause();
-        assertTrue(true, "Warden viewed complaint by category and marked it done.");
+        takeScreenshot("WardenMarkedDone");
+        Assert.assertTrue(true, "Warden viewed complaint by category and marked it done.");
     }
 
     // ==================== MAIN: RUN ALL WARDEN MODULES IN ONE BROWSER ====================
@@ -360,6 +358,18 @@ public class ComplaintSystemWardenTests {
             e.printStackTrace();
         } finally {
             if (driver != null) driver.quit();
+        }
+    }
+    private void takeScreenshot(String name) {
+        try {
+            File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            File destFile = new File("screenshots/" + name + "_" + timestamp + ".png");
+            destFile.getParentFile().mkdirs();
+            Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Screenshot saved: " + destFile.getAbsolutePath());
+        } catch (Exception e) {
+            System.err.println("Failed to take screenshot: " + e.getMessage());
         }
     }
 }
