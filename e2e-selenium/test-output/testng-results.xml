@@ -2,35 +2,36 @@
 <testng-results ignored="0" total="5" passed="0" failed="5" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-27T14:42:12 IST" name="Default suite" finished-at="2026-04-27T14:43:01 IST" duration-ms="48757">
+  <suite started-at="2026-04-27T14:46:34 IST" name="Default suite" finished-at="2026-04-27T14:48:28 IST" duration-ms="113746">
     <groups>
     </groups>
-    <test started-at="2026-04-27T14:42:12 IST" name="Default test" finished-at="2026-04-27T14:43:01 IST" duration-ms="48757">
+    <test started-at="2026-04-27T14:46:34 IST" name="Default test" finished-at="2026-04-27T14:48:28 IST" duration-ms="113746">
       <class name="experiment4.ComplaintSystemAllTests">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:12 IST" name="setUp" finished-at="2026-04-27T14:42:20 IST" duration-ms="7900" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:46:34 IST" name="setUp" finished-at="2026-04-27T14:46:37 IST" duration-ms="2625" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testCoreFunctionalityAddComplaint()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:20 IST" name="testCoreFunctionalityAddComplaint" description="Module 4 - Core Functionality (Add Complaint)" finished-at="2026-04-27T14:42:36 IST" duration-ms="15787" status="FAIL">
+        <test-method signature="testCoreFunctionalityAddComplaint()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:46:37 IST" name="testCoreFunctionalityAddComplaint" description="Module 4 - Core Functionality (Add Complaint)" finished-at="2026-04-27T14:46:57 IST" duration-ms="20322" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //label[text()='Select your hostel']/following-sibling::select (tried for 10 second(s) with 500 milliseconds interval)
+              <![CDATA[Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60661}, goog:processID: 36176, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60661/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 9297e269be7c9146fb01e352afd10f07]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63023}, goog:processID: 25760, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63023/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a99aa24e2899171c2e0f4bbefe2ea85a]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //label[text()='Select your hostel']/following-sibling::select (tried for 10 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60661}, goog:processID: 36176, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60661/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 9297e269be7c9146fb01e352afd10f07
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63023}, goog:processID: 25760, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63023/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a99aa24e2899171c2e0f4bbefe2ea85a
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at experiment4.ComplaintSystemAllTests.testCoreFunctionalityAddComplaint(ComplaintSystemAllTests.java:168)
+at experiment4.ComplaintSystemAllTests.waitForStudentDashboard(ComplaintSystemAllTests.java:421)
+at experiment4.ComplaintSystemAllTests.testCoreFunctionalityAddComplaint(ComplaintSystemAllTests.java:185)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -63,34 +64,35 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCoreFunctionalityAddComplaint -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:36 IST" name="tearDown" finished-at="2026-04-27T14:42:36 IST" duration-ms="307" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:46:57 IST" name="tearDown" finished-at="2026-04-27T14:46:57 IST" duration-ms="351" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:36 IST" name="setUp" finished-at="2026-04-27T14:42:38 IST" duration-ms="1871" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:46:57 IST" name="setUp" finished-at="2026-04-27T14:46:59 IST" duration-ms="1928" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testFullE2EStudentAndWarden()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:38 IST" name="testFullE2EStudentAndWarden" description="Full E2E - Student add complaint, Warden view and mark done" finished-at="2026-04-27T14:42:54 IST" duration-ms="15561" status="FAIL">
+        <test-method signature="testFullE2EStudentAndWarden()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:46:59 IST" name="testFullE2EStudentAndWarden" description="Full E2E - Student add complaint, Warden view and mark done" finished-at="2026-04-27T14:47:20 IST" duration-ms="20539" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //label[text()='Select your hostel']/following-sibling::select (tried for 10 second(s) with 500 milliseconds interval)
+              <![CDATA[Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52012}, goog:processID: 29764, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52012/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c53146fac5c0391d42c724c34e807ac2]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63580}, goog:processID: 35004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63580/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 09ec15df3835af42206aba420f743ea3]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //label[text()='Select your hostel']/following-sibling::select (tried for 10 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
 Build info: version: '4.27.0', revision: 'd6e718d134'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52012}, goog:processID: 29764, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52012/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c53146fac5c0391d42c724c34e807ac2
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63580}, goog:processID: 35004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63580/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 09ec15df3835af42206aba420f743ea3
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at experiment4.ComplaintSystemAllTests.testFullE2EStudentAndWarden(ComplaintSystemAllTests.java:218)
+at experiment4.ComplaintSystemAllTests.waitForStudentDashboard(ComplaintSystemAllTests.java:421)
+at experiment4.ComplaintSystemAllTests.testFullE2EStudentAndWarden(ComplaintSystemAllTests.java:236)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -123,26 +125,35 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFullE2EStudentAndWarden -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:54 IST" name="tearDown" finished-at="2026-04-27T14:42:54 IST" duration-ms="327" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:47:20 IST" name="tearDown" finished-at="2026-04-27T14:47:20 IST" duration-ms="327" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:54 IST" name="setUp" finished-at="2026-04-27T14:42:56 IST" duration-ms="1939" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:47:20 IST" name="setUp" finished-at="2026-04-27T14:47:22 IST" duration-ms="1734" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testHomePage()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:56 IST" name="testHomePage" description="Module 3 - Home Page" finished-at="2026-04-27T14:42:56 IST" duration-ms="2" status="FAIL">
-          <exception class="java.lang.Error">
+        <test-method signature="testHomePage()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:47:22 IST" name="testHomePage" description="Module 3 - Home Page" finished-at="2026-04-27T14:47:43 IST" duration-ms="20603" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Unresolved compilation problem: 
-welcome cannot be resolved
-]]>
+              <![CDATA[Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59507}, goog:processID: 5736, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59507/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e2a301042e7287fc07babfbf270d2241]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.Error: Unresolved compilation problem: 
-welcome cannot be resolved
-
-at experiment4.ComplaintSystemAllTests.testHomePage(ComplaintSystemAllTests.java:151)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59507}, goog:processID: 5736, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59507/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e2a301042e7287fc07babfbf270d2241
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at experiment4.ComplaintSystemAllTests.waitForStudentDashboard(ComplaintSystemAllTests.java:421)
+at experiment4.ComplaintSystemAllTests.testHomePage(ComplaintSystemAllTests.java:152)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -171,30 +182,39 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.Error -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testHomePage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:56 IST" name="tearDown" finished-at="2026-04-27T14:42:57 IST" duration-ms="793" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:47:43 IST" name="tearDown" finished-at="2026-04-27T14:47:43 IST" duration-ms="316" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:57 IST" name="setUp" finished-at="2026-04-27T14:42:59 IST" duration-ms="1801" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:47:43 IST" name="setUp" finished-at="2026-04-27T14:47:45 IST" duration-ms="1794" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLoginPage()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:59 IST" name="testLoginPage" description="Module 2 - Login Page" finished-at="2026-04-27T14:42:59 IST" duration-ms="1" status="FAIL">
-          <exception class="java.lang.Error">
+        <test-method signature="testLoginPage()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:47:45 IST" name="testLoginPage" description="Module 2 - Login Page" finished-at="2026-04-27T14:48:05 IST" duration-ms="20462" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Unresolved compilation problem: 
-welcome cannot be resolved
-]]>
+              <![CDATA[Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65386}, goog:processID: 33672, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65386/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 49d5e4a5af3f7c08c0f2928643e3e0ea]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.Error: Unresolved compilation problem: 
-welcome cannot be resolved
-
-at experiment4.ComplaintSystemAllTests.testLoginPage(ComplaintSystemAllTests.java:125)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65386}, goog:processID: 33672, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65386/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 49d5e4a5af3f7c08c0f2928643e3e0ea
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at experiment4.ComplaintSystemAllTests.waitForStudentDashboard(ComplaintSystemAllTests.java:421)
+at experiment4.ComplaintSystemAllTests.testLoginPage(ComplaintSystemAllTests.java:111)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -223,30 +243,39 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.Error -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLoginPage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:59 IST" name="tearDown" finished-at="2026-04-27T14:42:59 IST" duration-ms="295" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:48:05 IST" name="tearDown" finished-at="2026-04-27T14:48:05 IST" duration-ms="305" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:42:59 IST" name="setUp" finished-at="2026-04-27T14:43:01 IST" duration-ms="1845" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:48:05 IST" name="setUp" finished-at="2026-04-27T14:48:07 IST" duration-ms="1738" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testRegistrationPage()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:43:01 IST" name="testRegistrationPage" description="Module 1 - Registration Page" finished-at="2026-04-27T14:43:01 IST" duration-ms="3" status="FAIL">
-          <exception class="java.lang.Error">
+        <test-method signature="testRegistrationPage()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:48:07 IST" name="testRegistrationPage" description="Module 1 - Registration Page" finished-at="2026-04-27T14:48:28 IST" duration-ms="20287" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Unresolved compilation problem: 
-welcome cannot be resolved
-]]>
+              <![CDATA[Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61659}, goog:processID: 27968, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61659/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f12dcf9c93cf4e628f8c6631f4fc5884]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.Error: Unresolved compilation problem: 
-welcome cannot be resolved
-
-at experiment4.ComplaintSystemAllTests.testRegistrationPage(ComplaintSystemAllTests.java:85)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for url to contain "/dashboard/student". Current url: "http://localhost:5173/" (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.103, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\ajink\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61659}, goog:processID: 27968, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61659/devtoo..., se:cdpVersion: 147.0.7727.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f12dcf9c93cf4e628f8c6631f4fc5884
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at experiment4.ComplaintSystemAllTests.waitForStudentDashboard(ComplaintSystemAllTests.java:421)
+at experiment4.ComplaintSystemAllTests.testRegistrationPage(ComplaintSystemAllTests.java:83)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -275,11 +304,11 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.Error -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testRegistrationPage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:43:01 IST" name="tearDown" finished-at="2026-04-27T14:43:01 IST" duration-ms="223" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:experiment4.ComplaintSystemAllTests@6302bbb1]" started-at="2026-04-27T14:48:28 IST" name="tearDown" finished-at="2026-04-27T14:48:28 IST" duration-ms="314" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
